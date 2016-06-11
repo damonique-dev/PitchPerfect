@@ -18,9 +18,9 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var darthButton: UIButton!
     @IBOutlet weak var chipmunkButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    
+
     enum soundButton:Int{case reverb = 1, echo, rabbit, snail, darth, chipmunk}
-    
+
     var recordedAudioURL: NSURL!
     var audioEngine: AVAudioEngine!
     var audioPlayerNode: AVAudioPlayerNode!
@@ -29,18 +29,18 @@ class PlaySoundsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupAudio()
-    }
-    override func viewWillAppear(animated: Bool) {
-        stopButton.enabled = false
         configureUI(.NotPlaying)
     }
+
+    override func viewWillAppear(animated: Bool) {
+        stopButton.enabled = false
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
+
     @IBAction func playBackButtonPressed(sender: AnyObject) {
         stopButton.enabled = true
         switch soundButton(rawValue:sender.tag)! {
@@ -60,11 +60,9 @@ class PlaySoundsViewController: UIViewController {
         }
         configureUI(.Playing)
     }
-    
+
     @IBAction func stopPlayBackButtonPressed(sender: AnyObject) {
         stopButton.enabled = false
         configureUI(.NotPlaying)
     }
-   
-
 }
